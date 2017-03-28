@@ -1,0 +1,21 @@
+var ids = ["14669"]
+for(var i = 0; i < ids.length; i++){
+ print("------")
+ var id = ids[i]
+ print(id);
+db.offerRun.find({"offers.offerId":id}).sort({"lastUpdated" : -1}).limit(1).forEach(function(elem){
+  for(var i = 0; i < elem.offers.length; i++){
+   if(elem.offers[i].offerId == id){
+     print("name " + elem.offers[i].name);
+     print("cap "+elem.offers[i].cap);
+     print("Network Name "+elem.networkName);
+     print("Amount "+elem.offers[i].payout.amount);
+     print("Currency "+elem.offers[i].payout.currency);
+     
+     print("Country "+elem.offers[i].targeting.country);
+     print("OS "+elem.offers[i].targeting.os); 
+   } 
+  }
+})
+print("----")
+}
